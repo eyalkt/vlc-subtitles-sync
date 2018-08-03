@@ -46,7 +46,7 @@ end
 function openAboutDialog ()
 	local about_msg = 
 			descriptor()["title"] .. "<br><br>" .. 
-			"Easily synchronize the subtitles to the media, using \"catch\" and \"release\"." .. "<br>" ..
+			"Easily synchronize subtitles to media, using \"catch\" and \"release\"." .. "<br>" ..
 			"First, load media (movie, song ...) and subtitles (you can use VLsub addon for that), then," .. "<br>" ..
 			styleMsgBold("Catch") .. " a subtitle line, by clicking the 'Catch' button when the line appears, and" .. "<br>" ..
 			styleMsgBold("Release") .. " the line at the correct time." .. "<br><br>" ..
