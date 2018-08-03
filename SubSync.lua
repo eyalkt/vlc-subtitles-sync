@@ -1,42 +1,40 @@
+
 -- "SubSync.lua"
+
+local curr_version = "1.0"
 
 function descriptor()
 	return {
-		title = "VLC Extension - Basic structure", --Subtitles Synchronizer
-		version = "1.0",
+		title = "SubSync - " .. curr_version,
+		version = curr_version,
 		author = "EyalKT",
-		url = 'http://',
+		url = 'https://github.com/eyalkt/vlc-subtitles-sync',
 		shortdesc = "SubSync",
 		description = "Simplifies Subtitles Synchronization",
 		capabilities = {"menu"} --{"input-listener", "meta-listener", "playing-listener"}
 	}
 end
 
-function activate()
-	-- this is where extension starts
+function activate() -- this is where extension starts
 	create_dialog()
 end
 function deactivate()
 	-- what should be done on deactivation of extension
 end
-function close()
-	-- function triggered on dialog box close event
-	-- for example to deactivate extension on dialog box close:
+function close() -- function triggered on dialog box close event
 	vlc.deactivate()
 end
+
+-- menu -------------------------------------
 
 function menu()
 	return {"About"}
 end
 
--- Function triggered when an element from the menu is selected
-function trigger_menu(id)
+function trigger_menu(id) -- Function triggered when an element from the menu is selected
 	if(id == 1) then
 		openAboutDialog()
 	end
-	-- elseif(id == 2) then
-	-- 	--Menu_action2()
-	-- end
 end
 
 function openAboutDialog ()
@@ -50,21 +48,8 @@ function openAboutDialog ()
 	details_w = d:add_html(about_msg)
 end
 
--- function input_changed()
--- 	-- related to capabilities={"input-listener"} in descriptor()
--- 	-- triggered by Start/Stop media input event
--- end
--- function playing_changed()
--- 	-- related to capabilities={"playing-listener"} in descriptor()
--- 	-- triggered by Pause/Play madia input event
--- end
--- function meta_changed()
--- 	-- related to capabilities={"meta-listener"} in descriptor()
--- 	-- triggered by available media input meta data?
--- end
 
-
--- Custom part, Dialog box example: -------------------------
+-- extension logic  -------------------------
 
 function create_dialog()
 	current_input_object = nil --initInput() -- vlc.object.input()
@@ -111,9 +96,10 @@ function styleMsgGood (msg)
 end
 
 -- ////////////////////////TODO///////////////////////////////////
+-- ordered - easy first
 
--- display selected line
--- fine-tune delay after drop
--- remember delay
 -- about app and manual
+-- remember delay
+-- fine-tune delay after drop
 -- translate extension
+-- display selected line
