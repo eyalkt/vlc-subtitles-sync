@@ -1,5 +1,4 @@
 -- "SubSync.lua"
--- VLC Extension basic structure (template): ----------------
 
 function descriptor()
 	return {
@@ -24,6 +23,31 @@ function close()
 	-- function triggered on dialog box close event
 	-- for example to deactivate extension on dialog box close:
 	vlc.deactivate()
+end
+
+function menu()
+	return {"About"}
+end
+
+-- Function triggered when an element from the menu is selected
+function trigger_menu(id)
+	if(id == 1) then
+		openAboutDialog()
+	end
+	-- elseif(id == 2) then
+	-- 	--Menu_action2()
+	-- end
+end
+
+function openAboutDialog ()
+	local about_msg = "hi"
+	if d ~= nil then 
+		d:hide() 
+	end
+	d = nil
+	collectgarbage()
+	d = vlc.dialog("SubSync - about")
+	details_w = d:add_html(about_msg)
 end
 
 -- function input_changed()
