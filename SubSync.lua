@@ -16,13 +16,19 @@ function descriptor()
 end
 
 function activate() -- this is where extension starts
+	about = false
 	create_dialog()
 end
 function deactivate()
 	-- what should be done on deactivation of extension
 end
 function close() -- function triggered on dialog box close event
-	vlc.deactivate()
+	if about then
+		about = false
+		d = nil
+		collectgarbage()
+		create_dialog()
+	else vlc.deactivate() end
 end
 
 -- menu -------------------------------------
@@ -46,6 +52,7 @@ function openAboutDialog ()
 	collectgarbage()
 	d = vlc.dialog("SubSync - about")
 	details_w = d:add_html(about_msg)
+	about = true
 end
 
 
