@@ -52,13 +52,13 @@ end
 -- extension logic  -------------------------
 
 function create_dialog()
-	current_input_object = nil --initInput() -- vlc.object.input()
+	current_input_object = nil
 	selected_subtitle_time = nil
 	selected_drop_time = nil
 	time_difference = nil
 	curr_delay = nil
 	d = vlc.dialog("SubSync")
-	w1 = d:add_label("Catch a subtitle line", 1, 1, 3, 1)
+	w1 = d:add_label(styleMsgBold("Catch") .. " a subtitle line", 1, 1, 3, 1)
 	-- w2 - html - selected line
 	w3 = d:add_button("Catch",click_Catch, 1, 3, 1, 1)
 	w4 = d:add_button("Release!",click_Release, 2, 3, 1, 1)
@@ -70,18 +70,22 @@ function click_Catch()
 		w1:set_text("No media found")
 		return 
 	end
+	released = false
 	selected_subtitle_time = vlc.var.get(current_input_object, "time")
 	vlc.msg.dbg("selected subtitle line (time): " .. selected_subtitle_time)
 	-- retriveLine()
-	w1:set_text("Now, Release at the desired time")
+	w1:set_text("Now, " .. styleMsgBold("Release") .. " at the desired time")
 end
 
 function click_Release()
 	if selected_subtitle_time == nil or current_input_object == nil then
-		w1:set_text("First , catch a subtitle line!")
+		w1:set_text("First , " .. styleMsgBold("catch") .. " a subtitle line!")
 		return
 	end
-	curr_delay = vlc.var.get(current_input_object, 'spu-delay')
+	if released then curr_delay = 0
+	else curr_delay = vlc.var.get(current_input_object, 'spu-delay') end
+	released = true
+	-- curr_delay = vlc.var.get(current_input_object, 'spu-delay')
 	selected_drop_time = vlc.var.get(current_input_object, "time")
 	vlc.msg.dbg("selected drop time: " .. selected_drop_time)
 	time_difference = selected_drop_time - selected_subtitle_time + curr_delay
@@ -93,6 +97,10 @@ end
 
 function styleMsgGood (msg)
 	return "<span style='color:green;font-weight:bold'>" .. msg .. "</span>"
+end
+
+function styleMsgBold (msg)
+	return "<span style='font-weight:bold'>" .. msg .. "</span>"
 end
 
 -- ////////////////////////TODO///////////////////////////////////
