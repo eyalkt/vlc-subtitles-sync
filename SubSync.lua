@@ -44,14 +44,22 @@ function trigger_menu(id) -- Function triggered when an element from the menu is
 end
 
 function openAboutDialog ()
-	local about_msg = "hi"
+	local about_msg = 
+			descriptor()["title"] .. "<br><br>" .. 
+			"Easily synchronize the subtitles to the media, using \"catch\" and \"release\"." .. "<br>" ..
+			"First, load media (movie, song ...) and subtitles (you can use VLsub addon for that), then," .. "<br>" ..
+			styleMsgBold("Catch") .. " a subtitle line, by clicking the 'Catch' button when the line appears, and" .. "<br>" ..
+			styleMsgBold("Release") .. " the line at the correct time." .. "<br><br>" ..
+			"Author: Eyal Katz Talmon" .. "<br>" ..
+			"Website: " .. createWebLink(descriptor()["url"], "GitHub page") .. "<br>"
 	if d ~= nil then
 		d:hide()
 	end
 	d = nil
 	collectgarbage()
 	d = vlc.dialog("SubSync - about")
-	details_w = d:add_html(about_msg)
+	details_w = d:add_html(about_msg, 1, 1, 4, 1)
+	width_w = d:add_label(string.rep ("&nbsp;", 100)) -- to widen the about window
 	about = true
 end
 
@@ -110,13 +118,16 @@ function styleMsgBold (msg)
 	return "<span style='font-weight:bold'>" .. msg .. "</span>"
 end
 
+function createWebLink (url, name)
+	return "<a href='".. url .."'>" .. name .. "</a>"
+end
+
 -- ////////////////////////TODO///////////////////////////////////
 -- ordered - easy first
 
--- about app and manual
+-- about app and manual - videolan wesite ?
 -- add checkbox - pause on catch (helps remembering the selected subtitle's line)
--- percised catch - first click - slow motion , second - catch
--- remember delay
--- fine-tune delay after drop
+-- remember delay (in file meta?)
+-- percised catch - first click - slow motion , second - catch (instead of fine-tune delay after drop)
 -- translate extension
 -- display selected line
