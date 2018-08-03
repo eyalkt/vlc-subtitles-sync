@@ -107,6 +107,7 @@ end
 -- ordered - easy first
 
 -- about app and manual
+-- add checkbox - pause on catch (helps remembering the selected subtitle's line)
 -- remember delay
 -- fine-tune delay after drop
 -- translate extension
