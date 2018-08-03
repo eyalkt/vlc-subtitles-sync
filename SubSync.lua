@@ -45,8 +45,8 @@ end
 
 function openAboutDialog ()
 	local about_msg = "hi"
-	if d ~= nil then 
-		d:hide() 
+	if d ~= nil then
+		d:hide()
 	end
 	d = nil
 	collectgarbage()
@@ -115,6 +115,7 @@ end
 
 -- about app and manual
 -- add checkbox - pause on catch (helps remembering the selected subtitle's line)
+-- percised catch - first click - slow motion , second - catch
 -- remember delay
 -- fine-tune delay after drop
 -- translate extension
