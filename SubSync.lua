@@ -73,7 +73,8 @@ function openAboutDialog ()
 			styleMsgBold("Catch") .. " a subtitle line, by clicking the 'Catch' button when the line appears, and" .. "<br>" ..
 			styleMsgBold("Release") .. " the line at the correct time." .. "<br><br>" ..
 			"Author: Eyal Katz Talmon" .. "<br>" ..
-			"Website: " .. createWebLink(descriptor()["url"], "GitHub page") .. "<br>"
+			"Websites: " .. createWebLink(descriptor()["url"], "GitHub page") .. "  " ..
+											createWebLink("https://addons.videolan.org/p/1251951/", "Addon page") .. "<br>"
 	if d ~= nil then
 		d:hide()
 	end
