@@ -39,10 +39,11 @@ end
 
 function activate() -- this is where extension starts
 	about = false
+	vlc.msg.dbg("starting SubSync")
 	create_dialog()
 end
-function deactivate()
-	-- what should be done on deactivation of extension
+function deactivate() -- what should be done on deactivation of extension
+	vlc.msg.dbg("exiting SubSync")
 end
 function close() -- function triggered on dialog box close event
 	if about then
@@ -71,7 +72,8 @@ function openAboutDialog ()
 			"Easily synchronize subtitles to media, using \"catch\" and \"release\"." .. "<br>" ..
 			"First, load media (movie, song ...) and subtitles (you can use VLsub addon for that), then," .. "<br>" ..
 			styleMsgBold("Catch") .. " a subtitle line, by clicking the 'Catch' button when the line appears, and" .. "<br>" ..
-			styleMsgBold("Release") .. " the line at the correct time." .. "<br><br>" ..
+			styleMsgBold("Release") .. " the line at the correct time." .. "<br>" ..
+			"You can fix the released time by clicking \"Release\" again." .. "<br><br>" ..
 			"Author: Eyal Katz Talmon" .. "<br>" ..
 			"Websites: " .. createWebLink(descriptor()["url"], "GitHub page") .. "  " ..
 											createWebLink("https://addons.videolan.org/p/1251951/", "Addon page") .. "<br>"
@@ -123,7 +125,6 @@ function click_Release()
 	if released then curr_delay = 0
 	else curr_delay = vlc.var.get(current_input_object, 'spu-delay') end
 	released = true
-	-- curr_delay = vlc.var.get(current_input_object, 'spu-delay')
 	selected_drop_time = vlc.var.get(current_input_object, "time")
 	vlc.msg.dbg("selected drop time: " .. selected_drop_time)
 	time_difference = selected_drop_time - selected_subtitle_time + curr_delay
