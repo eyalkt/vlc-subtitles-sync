@@ -149,9 +149,10 @@ end
 -- ////////////////////////TODO///////////////////////////////////
 -- ordered - easy first
 
--- about app and manual - videolan wesite ?
--- add checkbox - pause on catch (helps remembering the selected subtitle's line)
+-- add checkbox - pause on catch and resume button (helps remembering the selected subtitle's line)
+--						OR - pause for 1 sec - prefered
 -- remember delay (in file meta?)
 -- percised catch - first click - slow motion , second - catch (instead of fine-tune delay after drop)
+--				AND/OR -	same for release
 -- translate extension
 -- display selected line
